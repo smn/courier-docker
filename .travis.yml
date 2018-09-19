@@ -10,7 +10,7 @@ env:
   - secure: Pmjh6uFpiFbqEo4WeTZdMTcyNG26+IsoWy6KD6vKCyCmGTfwIMkvR7pBULQ5Ks7FA4XPukj+Ke2S4Nnbpt4rbZSKcuwQIr/Qn5Stb654MM1hB8kyerL15kooB/55H+aZRAKqyNW5tjBUO5xt40ku0XPnPSvE4f+IDBQyFiIyeFXlH2CLRwRvzWPiL8uF7+hM/B6U8UsKMIbu7b6wKudutleB7hAThIe3PPnU3GecjilJrA/1VPpNV44crIVYDmMumJN+CYj62WCuyNqAeJCyCepDCTAmOz/Ly+OuQ5pq1qpZWSkksvF64Wm0Tl0ey6rkHAdKLWSnqOcAGF2+cmEhaWcLoUit47UfOiRhzaD8hLwsnLvF3UWhIm6c9F1gu2cEegL7X2OCxk/ZniJVnhJCG1OoVoKKy7r4NPG0Y322HqKLDu8sC+tHzpaZmN+37Q7vjrW94CgvEPErOIrLev/dEz2tTiXyJchkDUwkYFhjDbmN1zEfDQ9aLy0QCnKiyiYINp9V/3TAigvSo/vJ/vg1RZI7uxfjoQ6Gqwk/0cemXDgiZ7POYaSTl8Z4eCeQN2AKR8I6bgrZMqRlNx7rx5sweH2V9CWYimI4Fx6b3JFFiSBI+yAB0v5GpofVTgdqbE1VY0AMRPCLEfWvI+q9RSq5v022M6uBlyEoDn6tpjYkrVc=
   - secure: TWPxn1y445WKlQgxUrLei3Mq4navyajOIsIEt3GLxwFhlrRuUmKTQ1TpOXAz7xnmdienNu2IX+97Y0jgIbCfaq/Hc3xl2dUOQp/8niwzpFMQTrrn2BRd7RzSsIy8AMtJvroQFmU4hUrQZ1v8VMNIrigJQE/SgUkepFWpGIYeIqw6DTxWm6+tVXMUQtvNeg1bEzrhSGW/iePlDW5nnew2RbE5NvjHOC2ETuAfhF/am8ioPSS3ou33JeL0Tbdc0dMeZKnSTcnYerS4cB/D9JfoK7GX4Sp9/liQH7sgX8kD1bhPwRmaNU5i6+LUbufZjG0Ody2J9OQwNZ/d839fOfI3q2MuBXCDvHD8Keejt3oka+Uh8CeqronqPzIhinPWU6Yc6E/w6eJdeT83W7d/5BPZSo8VeUCvSM8K5Xf6tRyE/sKLonsV6Ytr+PwqtRm7v4DQpHa9JRX03pLKvWT1kMqbCaIcUDy8K1ySmTE2jFe8Jfn1ye8qOsbzE9eTNiVvsuwwf2EygKnJPzWLjfu6VJo3UaNVD1KQbZMJoEVNvmLFs7QeHQVg77d5MeikpMkdxLb+MDyfziNzDZ2Kv1sJ0et6fm0OY7BYQywxLsqpuPTT382zi/yjQZQgfg6l2C+xSWNeEIR+VhKIK+dkDktm+Iybc43mw480vlAAf7njr/nZBJg=
 before_script:
-- LATEST_TAG=$(curl -H "Authorization $GITHUB_ACCESS_TOKEN" -s https://api.github.com/repos/$REPO/tags  |
+- LATEST_TAG=$(curl -H "Authorization: Bearer $GITHUB_ACCESS_TOKEN" -s https://api.github.com/repos/$REPO/tags  |
   jq -r '.[0].name')
 - LATEST_TAG="${LATEST_TAG//[v]}"
 - VERSION=${VERSION:-$LATEST_TAG}
