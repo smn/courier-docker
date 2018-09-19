@@ -1,39 +1,33 @@
 sudo: required
 language: python
 services:
-  - docker
-
+- docker
 group: trusty_latest
-
 env:
   global:
-    - REGISTRY_USER=rapidproautomation
-    - IMAGE="sdehaan/courier" VERSION="" REPO="smn/courier"
-    - secure: TBwtks2Y5e4dSbV6FTnA5T3I178CC13K8mxmI2qk+eQ5kYRHOp4EqWVZF/jypPIoAy/YbO0CMB4Lhz3hDfilDE7pku6egGQT/mCT2UBCUGs+emIIWymBAbcx9uYnjwSRld5mrZ9lO59URNK6LIZd03IWi+urScRSI1k29qhN1PASZuUgXVpTNAVZNykXdM2MK6HxmyqRMpASMHhPATQnOvAspPRUgCkhxE5sG2Dr2baMqvR+019Wemj8JdZIIauNcgGEyCVXoDC9TAG0/abKxYpZvWJZ5UBboi3TMWgnKdlgBgdukh/pxWrtXxNKD6KpKR6oUuqqX7drbM78n4L74j4ytOFIv+JUEYTJb+mbSwGLaTdX2lnlop6y8E4FFjPp1JKtN43SdRS7XGB45MJoiyzeYFUPzdCED+p4rQQ4IKwxnF5IKYx5C/WXfY6bqaQR7PDaij8KbKSdD3R42NYjLdEFi1S5aLHvJVkmFQy/uxjpZ/Q2u4wgusOlixkBicAXHm3EuG61dhR0QuLUOEdwtR/thxWJxyK89T//8zWPyyrZv2WTDMOEXnAp8Av7Og4Cf816W6vjGE6GOfV/iWbeQ7L7jy9PvoDnaLiiDJEKhfUhOO+jrOqPyzhgkcfRXROe+y5CPAU5XvaQYaT5lsQtcRT9YX2PKkUuiER5phRm8DI=
-
+  - REGISTRY_USER=rapidproautomation
+  - IMAGE="sdehaan/courier" VERSION="" REPO="smn/courier"
+  - secure: Pmjh6uFpiFbqEo4WeTZdMTcyNG26+IsoWy6KD6vKCyCmGTfwIMkvR7pBULQ5Ks7FA4XPukj+Ke2S4Nnbpt4rbZSKcuwQIr/Qn5Stb654MM1hB8kyerL15kooB/55H+aZRAKqyNW5tjBUO5xt40ku0XPnPSvE4f+IDBQyFiIyeFXlH2CLRwRvzWPiL8uF7+hM/B6U8UsKMIbu7b6wKudutleB7hAThIe3PPnU3GecjilJrA/1VPpNV44crIVYDmMumJN+CYj62WCuyNqAeJCyCepDCTAmOz/Ly+OuQ5pq1qpZWSkksvF64Wm0Tl0ey6rkHAdKLWSnqOcAGF2+cmEhaWcLoUit47UfOiRhzaD8hLwsnLvF3UWhIm6c9F1gu2cEegL7X2OCxk/ZniJVnhJCG1OoVoKKy7r4NPG0Y322HqKLDu8sC+tHzpaZmN+37Q7vjrW94CgvEPErOIrLev/dEz2tTiXyJchkDUwkYFhjDbmN1zEfDQ9aLy0QCnKiyiYINp9V/3TAigvSo/vJ/vg1RZI7uxfjoQ6Gqwk/0cemXDgiZ7POYaSTl8Z4eCeQN2AKR8I6bgrZMqRlNx7rx5sweH2V9CWYimI4Fx6b3JFFiSBI+yAB0v5GpofVTgdqbE1VY0AMRPCLEfWvI+q9RSq5v022M6uBlyEoDn6tpjYkrVc=
+  - secure: TWPxn1y445WKlQgxUrLei3Mq4navyajOIsIEt3GLxwFhlrRuUmKTQ1TpOXAz7xnmdienNu2IX+97Y0jgIbCfaq/Hc3xl2dUOQp/8niwzpFMQTrrn2BRd7RzSsIy8AMtJvroQFmU4hUrQZ1v8VMNIrigJQE/SgUkepFWpGIYeIqw6DTxWm6+tVXMUQtvNeg1bEzrhSGW/iePlDW5nnew2RbE5NvjHOC2ETuAfhF/am8ioPSS3ou33JeL0Tbdc0dMeZKnSTcnYerS4cB/D9JfoK7GX4Sp9/liQH7sgX8kD1bhPwRmaNU5i6+LUbufZjG0Ody2J9OQwNZ/d839fOfI3q2MuBXCDvHD8Keejt3oka+Uh8CeqronqPzIhinPWU6Yc6E/w6eJdeT83W7d/5BPZSo8VeUCvSM8K5Xf6tRyE/sKLonsV6Ytr+PwqtRm7v4DQpHa9JRX03pLKvWT1kMqbCaIcUDy8K1ySmTE2jFe8Jfn1ye8qOsbzE9eTNiVvsuwwf2EygKnJPzWLjfu6VJo3UaNVD1KQbZMJoEVNvmLFs7QeHQVg77d5MeikpMkdxLb+MDyfziNzDZ2Kv1sJ0et6fm0OY7BYQywxLsqpuPTT382zi/yjQZQgfg6l2C+xSWNeEIR+VhKIK+dkDktm+Iybc43mw480vlAAf7njr/nZBJg=
 before_script:
-  - LATEST_TAG=$(curl -s https://api.github.com/repos/$REPO/tags  | jq -r '.[0].name')
-  - LATEST_TAG="${LATEST_TAG//[v]}"
-  - VERSION=${VERSION:-$LATEST_TAG}
-
+- LATEST_TAG=$(curl -H "Authorization $GITHUB_ACCESS_TOKEN" -s https://api.github.com/repos/$REPO/tags  |
+  jq -r '.[0].name')
+- LATEST_TAG="${LATEST_TAG//[v]}"
+- VERSION=${VERSION:-$LATEST_TAG}
 install: []
-
 script:
-  - docker pull "$IMAGE" || true
-  - >
-    docker build --pull --cache-from "$IMAGE" \
-      --tag "$IMAGE" \
-      --build-arg COURIER_VERSION=$VERSION \
-      --build-arg COURIER_REPO=$REPO \
-      .
-
+- docker pull "$IMAGE" || true
+- |
+  docker build --pull --cache-from "$IMAGE" \
+    --tag "$IMAGE" \
+    --build-arg COURIER_VERSION=$VERSION \
+    --build-arg COURIER_REPO=$REPO \
+    .
 after_script:
-  - docker images
-
+- docker images
 before_deploy:
-  - pip install docker-ci-deploy==0.3.0
-  - echo -n $REGISTRY_PASS | docker login -u "$REGISTRY_USER" --password-stdin
-
+- pip install docker-ci-deploy==0.3.0
+- echo -n $REGISTRY_PASS | docker login -u "$REGISTRY_USER" --password-stdin
 deploy:
   provider: script
   skip_cleanup: true
